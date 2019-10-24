@@ -1,0 +1,37 @@
+ create database locadoramysql;
+
+use locadoramysql;
+create table cliente (id int primary key not null, nome varchar (150) not null, email varchar (150) not null, cpf varchar (20) not null);
+
+create table telefone (id int primary key not null auto_increment,id_cliente int not null, numero_telefone varchar (20) not null);
+
+alter table telefone add foreign key  (id_cliente) references cliente(id);
+
+create table endereco(
+id int not null primary key auto_increment,
+id_cliente int not null ,
+endereco varchar(200) not null
+
+);
+
+create table filmes(
+id int not null primary key auto_increment,
+nome varchar (150) not null,
+ano int not null,
+tipo varchar (50) not null,
+classificacao varchar (50) not null,
+lancamento varchar (50) not null,
+quantidade int not null,
+disponibilidade boolean null
+);
+
+create table LocacaoDevolucao(
+id int not null primary key auto_increment,
+dataLocacao varchar (10),
+dataDevolucao varchar (10),
+constraint fk_clinte  foreign key  (id_cliente) references cliente(id),
+constraint fk_filme  foreign key  (id_filme) references filme(id),
+constraint fk_filme foreign key  (disponibilidade) references disponibilidade(boolean)
+);
+
+
